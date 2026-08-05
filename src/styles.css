@@ -198,3 +198,25 @@
   animation: blurFadeUp 1s ease-out forwards;
 }
 
+
+@keyframes trailerBackdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes trailerIn {
+  from {
+    opacity: 0;
+    filter: blur(24px);
+    transform: translateY(32px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
