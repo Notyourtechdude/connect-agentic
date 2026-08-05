@@ -13,6 +13,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import helmetVideo from "@/assets/helmet-hero.mp4.asset.json";
+import helmetPoster from "@/assets/helmet-poster.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
