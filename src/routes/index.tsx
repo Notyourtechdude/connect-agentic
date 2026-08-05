@@ -243,6 +243,49 @@ function Index() {
           </div>
         </div>
       </main>
+
+      {/* Trailer modal */}
+      {trailerOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Trailer"
+          onClick={() => setTrailerOpen(false)}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-4 backdrop-blur-2xl"
+          style={{ animation: "trailerBackdropIn 400ms ease-out forwards" }}
+        >
+          <button
+            aria-label="Close trailer"
+            onClick={() => setTrailerOpen(false)}
+            className="liquid-glass absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full md:top-8 md:right-8"
+          >
+            <X size={18} />
+          </button>
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-5xl"
+            style={{ animation: "trailerIn 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards" }}
+          >
+            <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black shadow-[0_40px_120px_-20px_rgba(0,0,0,0.9)]">
+              <video
+                className="h-full w-full object-cover"
+                src={VIDEO_URL}
+                autoPlay
+                loop
+                controls
+                playsInline
+              />
+            </div>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
+              <p className="text-lg font-normal tracking-[-0.04em] sm:text-xl">
+                Step Through. Work Smarter. — Official Trailer
+              </p>
+              <p className="text-xs text-gray-400 sm:text-sm">132 min · April, 2025</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
