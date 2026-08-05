@@ -77,7 +77,7 @@ function Index() {
       {/* faint hexagon studio mesh + cool navy wash, like the reference renders */}
       <div
         aria-hidden
-        className="hex-mesh pointer-events-none fixed inset-0 z-[1] opacity-40 mix-blend-screen"
+        className="hex-mesh pointer-events-none fixed inset-0 z-[1] opacity-[0.12] mix-blend-screen"
       />
       <div
         aria-hidden
