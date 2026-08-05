@@ -209,6 +209,8 @@ function Index() {
 
             <div className="flex flex-wrap items-center gap-3 sm:gap-4">
               <button
+              <button
+                onClick={() => setTrailerOpen(true)}
                 className="animate-blur-fade-up flex items-center gap-2 rounded-full bg-white px-6 py-2.5 font-medium text-black transition-colors hover:bg-gray-200 sm:px-8 sm:py-3"
                 style={{ animationDelay: "600ms" }}
               >
