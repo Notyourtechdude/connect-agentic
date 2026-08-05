@@ -69,11 +69,14 @@ function Index() {
       <video
         className="fixed inset-0 z-0 h-full w-full object-cover"
         src={helmetVideo.url}
+        poster={helmetPoster.url}
+        preload="auto"
         autoPlay
         loop
         muted
         playsInline
       />
+
 
       {/* faint hexagon studio mesh + cool navy wash, like the reference renders */}
       <div
