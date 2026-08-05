@@ -12,31 +12,40 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import helmetVideo from "@/assets/helmet-hero.mp4.asset.json";
+import helmetPoster from "@/assets/helmet-poster.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Step Through. Work Smarter. — Cinematic Streaming" },
+      { title: "Agentic Force — Step Through. Work Smarter." },
       {
         name: "description",
         content:
-          "Watch Step Through. Work Smarter. — a voyage through forgotten realms where past and future intertwine. Stream now in cinematic quality.",
+          "Agentic Force: step through to a smarter way of working. A cinematic look at autonomous agents built for precision, speed, and control.",
       },
-      { property: "og:title", content: "Step Through. Work Smarter. — Cinematic Streaming" },
+      { property: "og:title", content: "Agentic Force — Step Through. Work Smarter." },
       {
         property: "og:description",
         content:
-          "A voyage through forgotten realms, where past and future intertwine. Stream now in cinematic quality.",
+          "Step through to a smarter way of working. Autonomous agents built for precision, speed, and control.",
       },
     ],
   }),
   component: Index,
 });
 
-const VIDEO_URL =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_094145_4a271a6c-3869-4f1c-8aa7-aeb0cb227994.mp4";
+const NAV_LINKS = ["Agents", "Platform", "Editor's Pick", "Interviews", "Field Notes"];
 
-const NAV_LINKS = ["Movies", "TV Series", "Editor's Pick", "Interviews", "User Reviews"];
+/** Glowing double-chevron mark from the brand reference. */
+function Mark({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 40" aria-hidden className={className} fill="currentColor">
+      <path d="M24 0 46 34h-9L24 12 11 34H2L24 0Z" />
+      <path d="M15 40h18l-9-14-9 14Z" opacity="0.9" />
+    </svg>
+  );
+}
 
 function Index() {
   const [open, setOpen] = useState(false);
@@ -56,28 +65,47 @@ function Index() {
   }, [trailerOpen]);
 
   return (
-    <div className="relative flex h-screen min-h-screen flex-col overflow-hidden bg-black text-white">
+    <div className="relative flex h-screen min-h-screen flex-col overflow-hidden bg-af-deep text-white">
       <video
         className="fixed inset-0 z-0 h-full w-full object-cover"
-        src={VIDEO_URL}
+        src={helmetVideo.url}
+        poster={helmetPoster.url}
+        preload="auto"
         autoPlay
         loop
         muted
         playsInline
       />
 
+
+      {/* faint hexagon studio mesh + cool navy wash, like the reference renders */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-[1] backdrop-blur-xl bottom-blur-mask"
+        className="hex-mesh pointer-events-none fixed inset-0 z-[1] opacity-[0.12] mix-blend-screen"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-[1]"
+        style={{
+          background:
+            "radial-gradient(120% 80% at 50% 8%, color-mix(in oklab, var(--af-glow) 16%, transparent) 0%, transparent 55%), linear-gradient(to bottom, color-mix(in oklab, var(--af-deep) 55%, transparent) 0%, transparent 30%, color-mix(in oklab, var(--af-deep) 75%, transparent) 100%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-[2] backdrop-blur-xl bottom-blur-mask"
       />
 
       {/* Navbar */}
       <header className="relative z-50 flex items-center justify-between px-4 py-4 sm:px-6 md:px-12 md:py-6">
         <div
-          className="animate-blur-fade-up flex h-8 items-center text-lg font-semibold tracking-[-0.04em] md:h-10 md:text-xl"
+          className="animate-blur-fade-up flex h-8 items-center gap-2.5 md:h-10"
           style={{ animationDelay: "0ms" }}
         >
-          CINEMATIC
+          <Mark className="h-5 w-6 text-white drop-shadow-[0_0_10px_var(--af-glow)] md:h-6 md:w-7" />
+          <span className="text-chrome text-base font-semibold tracking-[0.18em] uppercase md:text-lg">
+            Agentic Force
+          </span>
         </div>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -85,7 +113,7 @@ function Index() {
             <a
               key={label}
               href="#"
-              className="animate-blur-fade-up text-sm transition-colors hover:text-gray-300"
+              className="animate-blur-fade-up text-sm text-white/80 transition-colors hover:text-white"
               style={{ animationDelay: `${100 + i * 50}ms` }}
             >
               {label}
@@ -136,10 +164,8 @@ function Index() {
 
       {/* Mobile menu */}
       <div
-        className={`absolute top-[72px] right-0 left-0 z-40 border-t border-b border-gray-800 bg-gray-900/95 shadow-2xl backdrop-blur-lg transition-all duration-500 ease-out lg:hidden ${
-          open
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-4 opacity-0"
+        className={`absolute top-[72px] right-0 left-0 z-40 border-t border-b border-white/10 bg-af-deep/95 shadow-2xl backdrop-blur-lg transition-all duration-500 ease-out lg:hidden ${
+          open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-4 opacity-0"
         }`}
       >
         <div className="flex flex-col px-4 py-3 sm:px-6">
@@ -148,7 +174,7 @@ function Index() {
               key={label}
               href="#"
               onClick={() => setOpen(false)}
-              className={`rounded-lg px-3 py-3 text-sm transition-all duration-500 ease-out hover:bg-gray-800/50 ${
+              className={`rounded-lg px-3 py-3 text-sm transition-all duration-500 ease-out hover:bg-white/5 ${
                 open ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
               }`}
               style={{ transitionDelay: `${i * 50}ms` }}
@@ -157,7 +183,7 @@ function Index() {
             </a>
           ))}
         </div>
-        <div className="flex items-center gap-3 border-t border-gray-800 px-4 py-4 sm:hidden sm:px-6">
+        <div className="flex items-center gap-3 border-t border-white/10 px-4 py-4 sm:hidden sm:px-6">
           <button className="liquid-glass flex flex-1 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm">
             <span>Search</span>
             <Search size={18} />
@@ -176,7 +202,7 @@ function Index() {
         <div className="flex flex-col items-end gap-8 md:flex-row">
           <div className="w-full flex-1">
             <div
-              className="animate-blur-fade-up mb-6 flex flex-wrap items-center gap-3 text-xs sm:gap-6 sm:text-sm md:mb-8"
+              className="animate-blur-fade-up mb-6 flex flex-wrap items-center gap-3 text-xs text-white/80 sm:gap-6 sm:text-sm md:mb-8"
               style={{ animationDelay: "300ms" }}
             >
               <span className="flex items-center gap-2">
@@ -190,6 +216,10 @@ function Index() {
               <span className="flex items-center gap-2">
                 <Calendar size={16} />
                 <span>April, 2025</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="animate-glow-pulse h-1.5 w-1.5 rounded-full bg-af-glow shadow-[0_0_10px_var(--af-glow)]" />
+                <span className="tracking-[0.22em] uppercase">Agentic Force</span>
               </span>
             </div>
 
@@ -210,7 +240,7 @@ function Index() {
             <div className="flex flex-wrap items-center gap-3 sm:gap-4">
               <button
                 onClick={() => setTrailerOpen(true)}
-                className="animate-blur-fade-up flex items-center gap-2 rounded-full bg-white px-6 py-2.5 font-medium text-black transition-colors hover:bg-gray-200 sm:px-8 sm:py-3"
+                className="animate-blur-fade-up glow-rim flex items-center gap-2 rounded-full bg-white px-6 py-2.5 font-medium text-black transition-colors hover:bg-gray-200 sm:px-8 sm:py-3"
                 style={{ animationDelay: "600ms" }}
               >
                 <Play size={18} className="fill-black" />
@@ -251,7 +281,7 @@ function Index() {
           aria-modal="true"
           aria-label="Trailer"
           onClick={() => setTrailerOpen(false)}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-4 backdrop-blur-2xl"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-af-deep/85 px-4 backdrop-blur-2xl"
           style={{ animation: "trailerBackdropIn 400ms ease-out forwards" }}
         >
           <button
@@ -267,10 +297,10 @@ function Index() {
             className="w-full max-w-5xl"
             style={{ animation: "trailerIn 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards" }}
           >
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black shadow-[0_40px_120px_-20px_rgba(0,0,0,0.9)]">
+            <div className="glow-rim relative aspect-video w-full overflow-hidden rounded-2xl bg-black">
               <video
                 className="h-full w-full object-cover"
-                src={VIDEO_URL}
+                src={helmetVideo.url}
                 autoPlay
                 loop
                 controls

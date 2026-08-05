@@ -220,3 +220,71 @@
     transform: translateY(0) scale(1);
   }
 }
+
+/* ── Agentic Force brand layer ─────────────────────────────── */
+:root {
+  --af-deep: oklch(0.16 0.03 260);
+  --af-glow: oklch(0.72 0.16 255);
+  --af-chrome-top: oklch(0.99 0 0);
+  --af-chrome-mid: oklch(0.78 0.01 250);
+}
+
+@theme inline {
+  --color-af-deep: var(--af-deep);
+  --color-af-glow: var(--af-glow);
+}
+
+/* metallic silver wordmark, as in the reference logo */
+@utility text-chrome {
+  background: linear-gradient(
+    180deg,
+    var(--af-chrome-top) 0%,
+    var(--af-chrome-mid) 38%,
+    oklch(0.45 0.02 255) 52%,
+    var(--af-chrome-mid) 66%,
+    var(--af-chrome-top) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* hexagon mesh, faint, like the studio wall */
+@utility hex-mesh {
+  background-image:
+    linear-gradient(
+      120deg,
+      color-mix(in oklab, var(--af-glow) 9%, transparent) 25%,
+      transparent 26%,
+      transparent 74%,
+      color-mix(in oklab, var(--af-glow) 9%, transparent) 75%
+    ),
+    linear-gradient(
+      60deg,
+      color-mix(in oklab, var(--af-glow) 9%, transparent) 25%,
+      transparent 26%,
+      transparent 74%,
+      color-mix(in oklab, var(--af-glow) 9%, transparent) 75%
+    );
+  background-size: 34px 59px;
+}
+
+@utility glow-rim {
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.12),
+    0 0 24px -6px color-mix(in oklab, var(--af-glow) 55%, transparent);
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@utility animate-glow-pulse {
+  animation: glowPulse 4s ease-in-out infinite;
+}
