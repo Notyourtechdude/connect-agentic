@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Search,
   User,
@@ -40,6 +40,20 @@ const NAV_LINKS = ["Movies", "TV Series", "Editor's Pick", "Interviews", "User R
 
 function Index() {
   const [open, setOpen] = useState(false);
+  const [trailerOpen, setTrailerOpen] = useState(false);
+
+  useEffect(() => {
+    if (!trailerOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setTrailerOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [trailerOpen]);
 
   return (
     <div className="relative flex h-screen min-h-screen flex-col overflow-hidden bg-black text-white">
@@ -195,6 +209,7 @@ function Index() {
 
             <div className="flex flex-wrap items-center gap-3 sm:gap-4">
               <button
+                onClick={() => setTrailerOpen(true)}
                 className="animate-blur-fade-up flex items-center gap-2 rounded-full bg-white px-6 py-2.5 font-medium text-black transition-colors hover:bg-gray-200 sm:px-8 sm:py-3"
                 style={{ animationDelay: "600ms" }}
               >
@@ -228,6 +243,49 @@ function Index() {
           </div>
         </div>
       </main>
+
+      {/* Trailer modal */}
+      {trailerOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Trailer"
+          onClick={() => setTrailerOpen(false)}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-4 backdrop-blur-2xl"
+          style={{ animation: "trailerBackdropIn 400ms ease-out forwards" }}
+        >
+          <button
+            aria-label="Close trailer"
+            onClick={() => setTrailerOpen(false)}
+            className="liquid-glass absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full md:top-8 md:right-8"
+          >
+            <X size={18} />
+          </button>
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-5xl"
+            style={{ animation: "trailerIn 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards" }}
+          >
+            <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black shadow-[0_40px_120px_-20px_rgba(0,0,0,0.9)]">
+              <video
+                className="h-full w-full object-cover"
+                src={VIDEO_URL}
+                autoPlay
+                loop
+                controls
+                playsInline
+              />
+            </div>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
+              <p className="text-lg font-normal tracking-[-0.04em] sm:text-xl">
+                Step Through. Work Smarter. — Official Trailer
+              </p>
+              <p className="text-xs text-gray-400 sm:text-sm">132 min · April, 2025</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
