@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Search,
   User,
@@ -40,6 +40,20 @@ const NAV_LINKS = ["Movies", "TV Series", "Editor's Pick", "Interviews", "User R
 
 function Index() {
   const [open, setOpen] = useState(false);
+  const [trailerOpen, setTrailerOpen] = useState(false);
+
+  useEffect(() => {
+    if (!trailerOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setTrailerOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [trailerOpen]);
 
   return (
     <div className="relative flex h-screen min-h-screen flex-col overflow-hidden bg-black text-white">
