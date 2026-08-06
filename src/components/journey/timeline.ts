@@ -151,7 +151,7 @@ export function sceneCopyOpacity(index: number, p: number): number {
   const outSeg = SEGMENTS.find((s) => s.kind === "transition" && s.a === index);
   const fadeIn = 0.05;
   const start = inSeg ? mix(inSeg.from, inSeg.to, 0.55) : -fadeIn;
-  const end = outSeg ? mix(outSeg.from, outSeg.to, 0.35) : 1.01;
+  const end = outSeg ? mix(outSeg.from, outSeg.to, 0.35) : 2;
   const fade = 0.05;
   const rise = smoothstep((p - start) / fade);
   const fall = 1 - smoothstep((p - (end - fade)) / fade);
