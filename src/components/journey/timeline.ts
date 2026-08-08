@@ -92,7 +92,8 @@ export const SEGMENTS: Segment[] = [
   { kind: "scene", index: 2, from: 0.5, to: 0.65 },
   { kind: "transition", a: 2, b: 3, mode: 2, from: 0.65, to: 0.75 },
   { kind: "scene", index: 3, from: 0.75, to: 0.9 },
-  { kind: "transition", a: 3, b: 4, mode: 3, from: 0.9, to: 1.0 },
+  { kind: "transition", a: 3, b: 4, mode: 3, from: 0.9, to: 0.97 },
+  { kind: "scene", index: 4, from: 0.97, to: 1.0 },
 ];
 
 /** Full camera life-span of each scene: from the transition that reveals it to the one that ends it. */
