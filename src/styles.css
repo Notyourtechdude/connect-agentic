@@ -221,22 +221,6 @@
   }
 }
 
-@utility animate-modal-backdrop {
-  animation: trailerBackdropIn 0.35s ease-out both;
-}
-
-@utility animate-modal-panel {
-  animation: trailerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-modal-backdrop,
-  .animate-modal-panel {
-    animation: none;
-  }
-}
-
-
 /* ── Agentic Force brand layer ─────────────────────────────── */
 :root {
   --af-deep: oklch(0.16 0.03 260);
@@ -303,39 +287,4 @@
 
 @utility animate-glow-pulse {
   animation: glowPulse 4s ease-in-out infinite;
-}
-
-/* breathing honeycomb backdrop — permanent, deepens with scroll energy */
-@keyframes hexBreathe {
-  0%,
-  100% {
-    transform: scale(1) translate3d(0, 0, 0);
-    opacity: calc(0.05 + var(--breath, 0) * 0.06);
-  }
-  50% {
-    transform: scale(calc(1.05 + var(--breath, 0) * 0.06)) translate3d(0, -1.2%, 0);
-    opacity: calc(0.11 + var(--breath, 0) * 0.1);
-  }
-}
-
-@utility hex-breathe {
-  animation: hexBreathe 9s ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
-@utility hex-bloom {
-  background:
-    radial-gradient(
-      70% 55% at 50% 12%,
-      color-mix(in oklab, var(--af-glow) 16%, transparent) 0%,
-      transparent 70%
-    ),
-    radial-gradient(60% 50% at 50% 100%, oklch(0.1 0.02 260) 0%, transparent 75%);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hex-breathe {
-    animation: none;
-    opacity: 0.08;
-  }
 }

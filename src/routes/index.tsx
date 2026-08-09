@@ -1,28 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Journey } from "@/components/journey/Journey";
-import { HexBackdrop } from "@/components/landing/HexBackdrop";
-import { Services } from "@/components/landing/Services";
-import { Features } from "@/components/landing/Features";
-import { Story } from "@/components/landing/Story";
-import { ClosingCTA } from "@/components/landing/ClosingCTA";
-import { Footer } from "@/components/landing/Footer";
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Agentic Force — Autonomous AI Systems for Modern Business" },
+      { title: "Agentic Force — A Scroll-Driven Helmet Journey" },
       {
         name: "description",
         content:
-          "Agentic AI solutions, workflow automation, predictive analytics and performance marketing — delivered on enterprise-grade, privacy-first infrastructure.",
+          "Scroll through five cinematic stages of the Agentic Force helmet: hangar, atmosphere, silhouette, hexagonal mesh, and final integration. A WebGL journey in precision engineering.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "Agentic Force — Autonomous AI Systems for Modern Business" },
+      { property: "og:title", content: "Agentic Force — A Scroll-Driven Helmet Journey" },
       {
         property: "og:description",
         content:
-          "A cinematic scroll journey into purpose-built AI: autonomous agents, orchestration, and self-optimizing systems built for scale and security.",
+          "Five cinematic stages, one continuous WebGL journey. Precision, atmosphere, and blue-LED engineering.",
       },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -32,22 +25,9 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="relative bg-af-deep text-white">
-      <h1 className="sr-only">
-        Agentic Force — autonomous AI solutions for modern business
-      </h1>
+    <main>
+      <h1 className="sr-only">Agentic Force — a scroll-driven cinematic helmet journey</h1>
       <Journey />
-      <div className="relative">
-        <HexBackdrop />
-        <div className="relative z-10">
-          <Services />
-          <Features />
-          <Story />
-          <ClosingCTA />
-
-          <Footer />
-        </div>
-      </div>
     </main>
   );
 }
