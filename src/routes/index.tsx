@@ -43,6 +43,8 @@ function Index() {
           <Services />
           <Features />
           <Story />
+          <ClosingCTA />
+
           <Footer />
         </div>
       </div>
