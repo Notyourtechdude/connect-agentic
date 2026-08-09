@@ -4,7 +4,9 @@ import { HexBackdrop } from "@/components/landing/HexBackdrop";
 import { Services } from "@/components/landing/Services";
 import { Features } from "@/components/landing/Features";
 import { Story } from "@/components/landing/Story";
+import { ClosingCTA } from "@/components/landing/ClosingCTA";
 import { Footer } from "@/components/landing/Footer";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
