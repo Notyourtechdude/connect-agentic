@@ -221,6 +221,22 @@
   }
 }
 
+@utility animate-modal-backdrop {
+  animation: trailerBackdropIn 0.35s ease-out both;
+}
+
+@utility animate-modal-panel {
+  animation: trailerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-modal-backdrop,
+  .animate-modal-panel {
+    animation: none;
+  }
+}
+
+
 /* ── Agentic Force brand layer ─────────────────────────────── */
 :root {
   --af-deep: oklch(0.16 0.03 260);
