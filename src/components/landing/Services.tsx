@@ -1,62 +1,12 @@
-import {
-  ArrowUpRight,
-  Bot,
-  Workflow,
-  Share2,
-  Target,
-  LineChart,
-  Megaphone,
-  Gem,
-  Rocket,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-
-type Service = { icon: LucideIcon; title: string; copy: string };
-
-const SERVICES: Service[] = [
-  {
-    icon: Bot,
-    title: "Agentic AI Solutions",
-    copy: "Deploy autonomous AI agents that handle complex workflows, make decisions, and continuously improve their performance.",
-  },
-  {
-    icon: Workflow,
-    title: "Workflow Automation",
-    copy: "Streamline operations with intelligent automation that connects your apps, data, and processes into seamless flows.",
-  },
-  {
-    icon: Share2,
-    title: "AI Social Media Management",
-    copy: "AI-powered content creation, scheduling, and engagement optimization across all major platforms.",
-  },
-  {
-    icon: Target,
-    title: "AI Lead Generation",
-    copy: "Identify, qualify, and convert high-intent prospects with autonomous lead generation systems.",
-  },
-  {
-    icon: LineChart,
-    title: "Predictive Analytics & BI",
-    copy: "Turn raw data into actionable insights and strategic decisions with advanced predictive AI models.",
-  },
-  {
-    icon: Megaphone,
-    title: "AI Performance Marketing",
-    copy: "Optimize ad spend, target high-value audiences, and maximize ROI with AI-driven marketing campaigns.",
-  },
-  {
-    icon: Gem,
-    title: "Brand Identity & Strategy",
-    copy: "Build a memorable, distinctive brand identity engineered to resonate with modern digital audiences.",
-  },
-  {
-    icon: Rocket,
-    title: "Start-up AI Incubation",
-    copy: "Comprehensive support for startups including AI strategy, implementation, and growth acceleration.",
-  },
-];
+import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { SERVICES } from "./services-data";
+import { ServiceModal } from "./ServiceModal";
 
 export function Services() {
+  const [openId, setOpenId] = useState<string | null>(null);
+  const active = SERVICES.find((s) => s.id === openId) ?? null;
+
   return (
     <section id="services" className="relative px-4 py-24 sm:px-6 md:px-10 md:py-32">
       <div className="mx-auto max-w-6xl">
@@ -76,24 +26,30 @@ export function Services() {
         </p>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {SERVICES.map(({ icon: Icon, title, copy }) => (
-            <article
-              key={title}
-              className="liquid-glass group flex flex-col rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1"
-            >
-              <span className="glow-rim mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl text-af-glow">
+          {SERVICES.map(({ id, icon: Icon, title, copy }) => (
+            <article key={id} className="liquid-glass group flex flex-col rounded-2xl p-6">
+              <span className="glow-rim mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl text-af-glow transition-transform duration-300 group-hover:scale-105">
                 <Icon size={19} />
               </span>
               <h3 className="text-lg font-medium text-white">{title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-white/55">{copy}</p>
-              <span className="mt-6 inline-flex items-center gap-1.5 text-xs tracking-[0.14em] text-white/70 uppercase transition-colors group-hover:text-white">
+              <button
+                onClick={() => setOpenId(id)}
+                aria-label={`Learn more about ${title}`}
+                className="mt-6 inline-flex items-center gap-1.5 self-start text-xs tracking-[0.14em] text-white/70 uppercase transition-colors hover:text-white group-hover:text-white"
+              >
                 Learn more
-                <ArrowUpRight size={14} />
-              </span>
+                <ArrowUpRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </button>
             </article>
           ))}
         </div>
       </div>
+
+      {active && <ServiceModal service={active} onClose={() => setOpenId(null)} />}
     </section>
   );
 }
