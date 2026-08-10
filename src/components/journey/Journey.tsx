@@ -22,12 +22,14 @@ function Mark({ className = "" }: { className?: string }) {
 
 export function Journey() {
   const progress = useRef(0);
+  const heroRef = useRef<HTMLDivElement>(null);
   const sceneRefs = useRef<Array<HTMLDivElement | null>>([]);
   const railRef = useRef<HTMLSpanElement>(null);
   const dotRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const hintRef = useRef<HTMLDivElement>(null);
   const [reduced, setReduced] = useState(false);
   const [mobile, setMobile] = useState(false);
+
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
