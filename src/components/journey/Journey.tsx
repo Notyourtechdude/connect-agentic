@@ -63,9 +63,11 @@ export function Journey() {
       const hero = heroRef.current;
       let p = 0;
       if (hero) {
-        const max = hero.offsetHeight - window.innerHeight;
+        // reserve a tail so the final scene holds on screen before the page moves on
+        const max = hero.offsetHeight - window.innerHeight * 1.6;
         p = max > 0 ? clamp01((window.scrollY - hero.offsetTop) / max) : 0;
       }
+
       paint(p);
       raf = requestAnimationFrame(loop);
     };
