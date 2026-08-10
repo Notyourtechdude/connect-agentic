@@ -80,31 +80,8 @@ export function Journey() {
 
   return (
     <div className="relative bg-af-deep text-white">
-      {/* fixed WebGL stage */}
-      <div className="fixed inset-0 z-0 bg-af-deep">
-        {reduced && (
-          <img
-            src={staticFrame.url}
-            alt="The Agentic Force helmet resting on a dark pedestal, lit by blue LED accents"
-            className="h-full w-full object-cover"
-          />
-        )}
-        {!reduced && (
-          <ClientOnly fallback={null}>
-            <Suspense fallback={null}>
-              <Experience progress={progress} mobile={mobile} />
-            </Suspense>
-          </ClientOnly>
-        )}
-      </div>
-
-      <div
-        aria-hidden
-        className="hex-mesh pointer-events-none fixed inset-0 z-[1] opacity-[0.08] mix-blend-screen"
-      />
-
       {/* nav */}
-      <header className="fixed top-0 right-0 left-0 z-30 flex items-center justify-between px-4 py-4 sm:px-6 md:px-10 md:py-6">
+      <header className="fixed top-0 right-0 left-0 z-40 flex items-center justify-between px-4 py-4 sm:px-6 md:px-10 md:py-6">
         <div className="flex items-center gap-2.5">
           <Mark className="h-5 w-6 text-white drop-shadow-[0_0_10px_var(--af-glow)]" />
           <span className="text-chrome text-sm font-semibold tracking-[0.2em] uppercase md:text-base">
@@ -124,85 +101,113 @@ export function Journey() {
         </button>
       </header>
 
-      {/* progress rail */}
-      <div className="pointer-events-none fixed top-1/2 right-4 z-30 hidden -translate-y-1/2 flex-col items-center gap-4 md:right-8 md:flex">
-        <div className="relative h-40 w-px bg-white/15">
-          <span
-            ref={railRef}
-            className="absolute inset-0 origin-top bg-af-glow shadow-[0_0_12px_var(--af-glow)]"
-            style={{ transform: "scaleY(0)" }}
+      {/* hero: tall scroll track with a pinned stage */}
+      <div
+        ref={heroRef}
+        className={reduced ? "relative h-screen w-full" : "relative h-[700vh] w-full"}
+      >
+        <div className="sticky top-0 h-screen w-full overflow-hidden bg-af-deep">
+          {/* WebGL stage */}
+          <div className="absolute inset-0 z-0 bg-af-deep">
+            {reduced && (
+              <img
+                src={staticFrame.url}
+                alt="The Agentic Force helmet resting on a dark pedestal, lit by blue LED accents"
+                className="h-full w-full object-cover"
+              />
+            )}
+            {!reduced && (
+              <ClientOnly fallback={null}>
+                <Suspense fallback={null}>
+                  <Experience progress={progress} mobile={mobile} />
+                </Suspense>
+              </ClientOnly>
+            )}
+          </div>
+
+          <div
+            aria-hidden
+            className="hex-mesh pointer-events-none absolute inset-0 z-[1] opacity-[0.08] mix-blend-screen"
           />
-        </div>
-        <div className="flex flex-col items-center gap-3">
-          {SCENES.map((s, i) => (
-            <span
-              key={s.key}
-              ref={(el) => {
-                dotRefs.current[i] = el;
-              }}
-              className="h-1.5 w-1.5 rounded-full bg-af-glow"
-              style={{ opacity: 0.25 }}
-            />
-          ))}
-        </div>
-      </div>
 
-      {/* pinned copy layer */}
-      <div className="pointer-events-none fixed inset-0 z-20 flex items-end px-4 pb-16 sm:px-6 md:items-center md:px-10 md:pb-0">
-        <div className="relative w-full max-w-2xl">
-          {(reduced ? [SCENES[SCENES.length - 1]!] : SCENES).map((s, idx) => {
-            const i = reduced ? SCENES.length - 1 : idx;
-            return (
-            <div
-              key={s.key}
-              ref={(el) => {
-                sceneRefs.current[i] = el;
-              }}
-              className="md:absolute md:inset-x-0 md:top-1/2 md:-translate-y-1/2"
-              style={{ opacity: reduced || i === 0 ? 1 : 0 }}
-            >
-              <p className="mb-4 flex items-center gap-2.5 text-xs tracking-[0.28em] text-white/60 uppercase">
-                <span className="animate-glow-pulse h-1.5 w-1.5 rounded-full bg-af-glow shadow-[0_0_10px_var(--af-glow)]" />
-                {s.kicker}
-              </p>
-              <h2
-                className="text-4xl font-normal sm:text-6xl md:text-7xl"
-                style={{ letterSpacing: "-0.045em" }}
-              >
-                {s.title}
-              </h2>
-              <p className="mt-4 max-w-lg text-base text-white/65 sm:text-lg">{s.copy}</p>
-              {i === SCENES.length - 1 && (
-                <div className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3">
-                  <button className="glow-rim flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-black transition-colors hover:bg-white/85">
-                    <Play size={17} className="fill-black" />
-                    <span>Watch the film</span>
-                  </button>
-                  <button className="liquid-glass rounded-full px-6 py-3 font-medium">
-                    Explore the platform
-                  </button>
-                </div>
-              )}
+          {/* progress rail */}
+          <div className="pointer-events-none absolute top-1/2 right-4 z-30 hidden -translate-y-1/2 flex-col items-center gap-4 md:right-8 md:flex">
+            <div className="relative h-40 w-px bg-white/15">
+              <span
+                ref={railRef}
+                className="absolute inset-0 origin-top bg-af-glow shadow-[0_0_12px_var(--af-glow)]"
+                style={{ transform: "scaleY(0)" }}
+              />
             </div>
-            );
-          })}
+            <div className="flex flex-col items-center gap-3">
+              {SCENES.map((s, i) => (
+                <span
+                  key={s.key}
+                  ref={(el) => {
+                    dotRefs.current[i] = el;
+                  }}
+                  className="h-1.5 w-1.5 rounded-full bg-af-glow"
+                  style={{ opacity: 0.25 }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* pinned copy layer */}
+          <div className="pointer-events-none absolute inset-0 z-20 flex items-end px-4 pb-16 sm:px-6 md:items-center md:px-10 md:pb-0">
+            <div className="relative w-full max-w-2xl">
+              {(reduced ? [SCENES[SCENES.length - 1]!] : SCENES).map((s, idx) => {
+                const i = reduced ? SCENES.length - 1 : idx;
+                return (
+                  <div
+                    key={s.key}
+                    ref={(el) => {
+                      sceneRefs.current[i] = el;
+                    }}
+                    className="md:absolute md:inset-x-0 md:top-1/2 md:-translate-y-1/2"
+                    style={{ opacity: reduced || i === 0 ? 1 : 0 }}
+                  >
+                    <p className="mb-4 flex items-center gap-2.5 text-xs tracking-[0.28em] text-white/60 uppercase">
+                      <span className="animate-glow-pulse h-1.5 w-1.5 rounded-full bg-af-glow shadow-[0_0_10px_var(--af-glow)]" />
+                      {s.kicker}
+                    </p>
+                    <h2
+                      className="text-4xl font-normal sm:text-6xl md:text-7xl"
+                      style={{ letterSpacing: "-0.045em" }}
+                    >
+                      {s.title}
+                    </h2>
+                    <p className="mt-4 max-w-lg text-base text-white/65 sm:text-lg">{s.copy}</p>
+                    {i === SCENES.length - 1 && (
+                      <div className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3">
+                        <button className="glow-rim flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-black transition-colors hover:bg-white/85">
+                          <Play size={17} className="fill-black" />
+                          <span>Watch the film</span>
+                        </button>
+                        <button className="liquid-glass rounded-full px-6 py-3 font-medium">
+                          Explore the platform
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* scroll hint */}
+          {!reduced && (
+            <div
+              ref={hintRef}
+              className="pointer-events-none absolute bottom-6 left-1/2 z-30 -translate-x-1/2 text-center"
+            >
+              <ArrowDown size={16} className="mx-auto animate-bounce text-white/70" />
+              <p className="mt-2 text-[10px] tracking-[0.3em] text-white/50 uppercase">Scroll</p>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* scroll hint */}
-      {!reduced && (
-        <div
-          ref={hintRef}
-          className="pointer-events-none fixed bottom-6 left-1/2 z-30 -translate-x-1/2 text-center"
-        >
-          <ArrowDown size={16} className="mx-auto animate-bounce text-white/70" />
-          <p className="mt-2 text-[10px] tracking-[0.3em] text-white/50 uppercase">Scroll</p>
-        </div>
-      )}
-
-      {/* scroll spacer drives the normalized timeline */}
-      {!reduced && <div aria-hidden className="relative h-[700vh] w-full" />}
-      {reduced && <div aria-hidden className="h-screen w-full" />}
     </div>
   );
+
 }
