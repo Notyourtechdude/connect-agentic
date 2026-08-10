@@ -60,10 +60,16 @@ export function Journey() {
 
     const loop = (time: number) => {
       lenis.raf(time);
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      paint(max > 0 ? clamp01(window.scrollY / max) : 0);
+      const hero = heroRef.current;
+      let p = 0;
+      if (hero) {
+        const max = hero.offsetHeight - window.innerHeight;
+        p = max > 0 ? clamp01((window.scrollY - hero.offsetTop) / max) : 0;
+      }
+      paint(p);
       raf = requestAnimationFrame(loop);
     };
+
     raf = requestAnimationFrame(loop);
 
     return () => {
