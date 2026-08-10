@@ -74,7 +74,7 @@ export function Quiz() {
   const [leaving, setLeaving] = useState<"none" | "out">("none");
 
   const done = step >= QUESTIONS.length;
-  const pct = Math.round((Math.min(step, QUESTIONS.length) / QUESTIONS.length) * 100);
+  const pct = Math.round((Math.min(step + 1, QUESTIONS.length) / QUESTIONS.length) * 100);
   const current = QUESTIONS[Math.min(step, QUESTIONS.length - 1)]!;
 
   const pick = (track: Track) => {
