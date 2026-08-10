@@ -99,8 +99,9 @@ export function Journey() {
         </nav>
         <button className="liquid-glass flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-[11px] tracking-[0.14em] whitespace-nowrap uppercase sm:px-5 sm:text-sm">
           <Hexagon size={15} />
-          <span className="hidden xs:inline sm:inline">Request access</span>
-          <span className="xs:hidden sm:hidden">Access</span>
+          <span className="hidden sm:inline">Request access</span>
+          <span className="sm:hidden">Access</span>
+
         </button>
 
       </header>
