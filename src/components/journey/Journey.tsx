@@ -84,9 +84,9 @@ export function Journey() {
     <div className="relative bg-af-deep text-white">
       {/* nav */}
       <header className="fixed top-0 right-0 left-0 z-40 flex items-center justify-between px-4 py-4 sm:px-6 md:px-10 md:py-6">
-        <div className="flex items-center gap-2.5">
-          <Mark className="h-5 w-6 text-white drop-shadow-[0_0_10px_var(--af-glow)]" />
-          <span className="text-chrome text-sm font-semibold tracking-[0.2em] uppercase md:text-base">
+        <div className="flex min-w-0 items-center gap-2.5">
+          <Mark className="h-5 w-6 shrink-0 text-white drop-shadow-[0_0_10px_var(--af-glow)]" />
+          <span className="text-chrome truncate text-sm font-semibold tracking-[0.2em] whitespace-nowrap uppercase md:text-base">
             Agentic Force
           </span>
         </div>
@@ -97,10 +97,12 @@ export function Journey() {
             </a>
           ))}
         </nav>
-        <button className="liquid-glass flex items-center gap-2 rounded-full px-4 py-2 text-xs tracking-[0.14em] uppercase sm:px-5 sm:text-sm">
+        <button className="liquid-glass flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-[11px] tracking-[0.14em] whitespace-nowrap uppercase sm:px-5 sm:text-sm">
           <Hexagon size={15} />
-          <span>Request access</span>
+          <span className="hidden xs:inline sm:inline">Request access</span>
+          <span className="xs:hidden sm:hidden">Access</span>
         </button>
+
       </header>
 
       {/* hero: tall scroll track with a pinned stage */}
