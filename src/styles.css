@@ -288,3 +288,48 @@
 @utility animate-glow-pulse {
   animation: glowPulse 4s ease-in-out infinite;
 }
+
+/* animated gradient border shell (wrap a rounded child) */
+@keyframes borderSpin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@utility gradient-border {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      color-mix(in oklab, var(--af-glow) 85%, transparent) 12%,
+      transparent 30%,
+      transparent 62%,
+      color-mix(in oklab, var(--af-glow) 45%, transparent) 76%,
+      transparent 92%
+    );
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: borderSpin 9s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
