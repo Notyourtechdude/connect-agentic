@@ -146,7 +146,8 @@ export function sceneCopyOpacity(index: number, p: number): number {
   const hold = SEGMENTS.find((s) => s.kind === "scene" && s.index === index) as
     | Extract<Segment, { kind: "scene" }>
     | undefined;
-  if (!hold) return 0;
+  if (!hold && index !== SCENES.length - 1) return 0;
+
   const inSeg = SEGMENTS.find((s) => s.kind === "transition" && s.b === index);
   const outSeg = SEGMENTS.find((s) => s.kind === "transition" && s.a === index);
   const fadeIn = 0.05;
