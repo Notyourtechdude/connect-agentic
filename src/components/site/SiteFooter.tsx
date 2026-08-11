@@ -20,13 +20,14 @@ export function SiteFooter() {
         <nav className="flex flex-wrap items-center justify-center gap-6">
           {NAV.map((n) => (
             <a
-              key={n}
-              href="#"
+              key={n.label}
+              href={n.href}
               className="text-sm text-white/55 transition-colors hover:text-white"
             >
-              {n}
+              {n.label}
             </a>
           ))}
+
         </nav>
         <p className="text-xs text-white/35">© {new Date().getFullYear()} AgenticForce</p>
       </div>
