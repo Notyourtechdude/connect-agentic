@@ -9,7 +9,12 @@ const Experience = lazy(() =>
   import("./Experience").then((m) => ({ default: m.Experience })),
 );
 
-const NAV = ["Journey", "Hardware", "Platform", "Field Notes"];
+const NAV = [
+  { label: "Journey", href: "#journey" },
+  { label: "Services", href: "#services" },
+  { label: "Diagnostic", href: "#quiz" },
+  { label: "Contact", href: "#cta" },
+];
 
 function Mark({ className = "" }: { className?: string }) {
   return (
