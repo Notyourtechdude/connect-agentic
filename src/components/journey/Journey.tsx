@@ -92,17 +92,24 @@ export function Journey() {
         </div>
         <nav className="hidden items-center gap-8 md:flex">
           {NAV.map((n) => (
-            <a key={n} href="#" className="text-sm text-white/70 transition-colors hover:text-white">
-              {n}
+            <a
+              key={n.label}
+              href={n.href}
+              className="text-sm text-white/70 transition-colors hover:text-white"
+            >
+              {n.label}
             </a>
           ))}
         </nav>
-        <button className="liquid-glass flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-[11px] tracking-[0.14em] whitespace-nowrap uppercase sm:px-5 sm:text-sm">
+        <a
+          href="#cta"
+          className="liquid-glass flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-[11px] tracking-[0.14em] whitespace-nowrap uppercase sm:px-5 sm:text-sm"
+        >
           <Hexagon size={15} />
           <span className="hidden sm:inline">Request access</span>
           <span className="sm:hidden">Access</span>
+        </a>
 
-        </button>
 
       </header>
 
