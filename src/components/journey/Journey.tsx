@@ -185,15 +185,19 @@ export function Journey() {
                     <p className="mt-4 max-w-lg text-base text-white/65 sm:text-lg">{s.copy}</p>
                     {i === SCENES.length - 1 && (
                       <div className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3">
-                        <button className="glow-rim flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-black transition-colors hover:bg-white/85">
+                        <a
+                          href="#cta"
+                          className="glow-rim flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-black transition-colors hover:bg-white/85"
+                        >
                           <Play size={17} className="fill-black" />
                           <span>Watch the film</span>
-                        </button>
-                        <button className="liquid-glass rounded-full px-6 py-3 font-medium">
+                        </a>
+                        <a href="#services" className="liquid-glass rounded-full px-6 py-3 font-medium">
                           Explore the platform
-                        </button>
+                        </a>
                       </div>
                     )}
+
                   </div>
                 );
               })}
