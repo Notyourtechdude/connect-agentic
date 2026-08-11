@@ -1,6 +1,11 @@
 import { Mark } from "./Mark";
 
-const NAV = ["Journey", "Hardware", "Platform", "Field Notes"];
+const NAV = [
+  { label: "Journey", href: "#journey" },
+  { label: "Services", href: "#services" },
+  { label: "Diagnostic", href: "#quiz" },
+  { label: "Contact", href: "#cta" },
+];
 
 export function SiteFooter() {
   return (
