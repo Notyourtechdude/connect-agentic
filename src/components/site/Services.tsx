@@ -90,15 +90,16 @@ export function Services() {
                     {s.copy}
                   </p>
                   <a
-                    href="#services"
+                    href="#quiz"
                     className="relative z-10 mt-6 inline-flex items-center gap-1.5 text-xs tracking-[0.18em] text-white/50 uppercase transition-colors hover:text-white"
                   >
-                    Learn more
+                    Explore {s.title}
                     <ArrowUpRight
                       size={14}
                       className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </a>
+
                   <span
                     aria-hidden
                     className="pointer-events-none absolute inset-x-6 bottom-0 h-px origin-left scale-x-0 bg-af-glow opacity-70 transition-transform duration-500 group-hover:scale-x-100"
