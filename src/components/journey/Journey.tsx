@@ -120,9 +120,11 @@ export function Journey() {
 
       {/* hero: tall scroll track with a pinned stage */}
       <div
+        id="journey"
         ref={heroRef}
         className={reduced ? "relative h-screen w-full" : "relative h-[700vh] w-full"}
       >
+
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-af-deep">
           {/* WebGL stage */}
           <div className="absolute inset-0 z-0 bg-af-deep">
