@@ -9,7 +9,12 @@ const Experience = lazy(() =>
   import("./Experience").then((m) => ({ default: m.Experience })),
 );
 
-const NAV = ["Journey", "Hardware", "Platform", "Field Notes"];
+const NAV = [
+  { label: "Journey", href: "#journey" },
+  { label: "Services", href: "#services" },
+  { label: "Diagnostic", href: "#quiz" },
+  { label: "Contact", href: "#cta" },
+];
 
 function Mark({ className = "" }: { className?: string }) {
   return (
@@ -92,25 +97,34 @@ export function Journey() {
         </div>
         <nav className="hidden items-center gap-8 md:flex">
           {NAV.map((n) => (
-            <a key={n} href="#" className="text-sm text-white/70 transition-colors hover:text-white">
-              {n}
+            <a
+              key={n.label}
+              href={n.href}
+              className="text-sm text-white/70 transition-colors hover:text-white"
+            >
+              {n.label}
             </a>
           ))}
         </nav>
-        <button className="liquid-glass flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-[11px] tracking-[0.14em] whitespace-nowrap uppercase sm:px-5 sm:text-sm">
+        <a
+          href="#cta"
+          className="liquid-glass flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-[11px] tracking-[0.14em] whitespace-nowrap uppercase sm:px-5 sm:text-sm"
+        >
           <Hexagon size={15} />
           <span className="hidden sm:inline">Request access</span>
           <span className="sm:hidden">Access</span>
+        </a>
 
-        </button>
 
       </header>
 
       {/* hero: tall scroll track with a pinned stage */}
       <div
+        id="journey"
         ref={heroRef}
         className={reduced ? "relative h-screen w-full" : "relative h-[700vh] w-full"}
       >
+
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-af-deep">
           {/* WebGL stage */}
           <div className="absolute inset-0 z-0 bg-af-deep">
@@ -185,15 +199,19 @@ export function Journey() {
                     <p className="mt-4 max-w-lg text-base text-white/65 sm:text-lg">{s.copy}</p>
                     {i === SCENES.length - 1 && (
                       <div className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3">
-                        <button className="glow-rim flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-black transition-colors hover:bg-white/85">
+                        <a
+                          href="#cta"
+                          className="glow-rim flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-black transition-colors hover:bg-white/85"
+                        >
                           <Play size={17} className="fill-black" />
                           <span>Watch the film</span>
-                        </button>
-                        <button className="liquid-glass rounded-full px-6 py-3 font-medium">
+                        </a>
+                        <a href="#services" className="liquid-glass rounded-full px-6 py-3 font-medium">
                           Explore the platform
-                        </button>
+                        </a>
                       </div>
                     )}
+
                   </div>
                 );
               })}

@@ -81,21 +81,28 @@ export function FinalCta({ mobile }: { mobile: boolean }) {
         <Reveal delay={300}>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Magnetic>
-              <button className="glow-rim group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-medium text-black transition-colors hover:bg-white/85">
+              <a
+                href="mailto:hello@agenticforce.ai?subject=AgenticForce%20demo%20request"
+                className="glow-rim group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-medium text-black transition-colors hover:bg-white/85"
+              >
                 <CalendarCheck size={17} />
                 <span>Schedule a Demo</span>
                 <ArrowRight
                   size={16}
                   className="transition-transform duration-300 group-hover:translate-x-1"
                 />
-              </button>
+              </a>
             </Magnetic>
             <Magnetic radius={10}>
-              <button className="liquid-glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-medium text-white">
+              <a
+                href="#services"
+                className="liquid-glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-medium text-white"
+              >
                 <FileText size={16} />
                 <span>View Case Studies</span>
-              </button>
+              </a>
             </Magnetic>
+
           </div>
         </Reveal>
         <Reveal delay={400}>

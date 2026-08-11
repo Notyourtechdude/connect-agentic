@@ -77,14 +77,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "AgenticForce — Autonomous AI Agents" },
+      {
+        name: "description",
+        content:
+          "AgenticForce builds autonomous AI agents for workflow automation, lead generation, predictive analytics, and performance marketing.",
+      },
+      { name: "author", content: "AgenticForce" },
+      { property: "og:site_name", content: "AgenticForce" },
+      { property: "og:title", content: "AgenticForce — Autonomous AI Agents" },
+      {
+        property: "og:description",
+        content:
+          "Agentic AI solutions, workflow automation, and decision intelligence — engineered end to end.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
@@ -99,7 +107,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebSite",
+              name: "AgenticForce",
+              url: "https://connect-agentic.lovable.app",
+            },
+            {
+              "@type": "Organization",
+              name: "AgenticForce",
+              url: "https://connect-agentic.lovable.app",
+              logo: "https://connect-agentic.lovable.app/favicon.ico",
+            },
+          ],
+        }),
+      },
+    ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
